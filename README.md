@@ -4,5 +4,6 @@ Our Users will be able to
 - Edit their existing profile
 - Browse all of our products
 - Add them to their personal cart
-- Checkout 
-Allowing to to add their address and payment information so they can pay for and receive the products they'd like to purchase.
+- Checkout
+   
+Allowing the user to add their address and payment information so they can pay for and receive the products they'd like to purchase.
