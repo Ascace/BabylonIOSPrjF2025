@@ -1,0 +1,18 @@
+//
+//  AuthGate.swift
+//  Babylon
+//
+//  Created by user278010 on 11/22/25.
+//
+
+import SwiftUI
+
+struct AuthGate: View {
+    var body: some View {
+        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    }
+}
+
+#Preview {
+    AuthGate()
+}
