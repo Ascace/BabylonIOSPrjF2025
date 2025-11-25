@@ -7,43 +7,63 @@
 
 import SwiftUI
 
-struct LoginView: View
-{
-    @State private var email: String = ""
-    @State private var password: String = ""
-
-    var body: some View
-    {
-        VStack(spacing: 20)
-        {
-            Text("Login")
-                .font(.largeTitle)
-                .bold()
-
-            TextField("Email", text: $email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.emailAddress)
-
-            SecureField("Password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-
-            Button(action: {
-                // Our Back End Login logic will be here
-            })
-            {
-                Text("Log In")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.brown)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
+struct LoginView: View {
+    
+    @State private var email = ""
+    @State private var password = ""
+    @State private var displayName = ""
+    @State private var errorMessage: String?
+    @StateObject private var auth = AuthService.shared
+    
+    var body: some View {
+        Form {
+            Section("Login"){
+                TextField("Enter Email", text: $email)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .keyboardType(.emailAddress)
+                
+                SecureField("Enter a Password (Min 6 Chars)", text: $password)
+                
+                
+               
             }
-
-            Spacer()
             
-            NavigationLink("Don't have an account? Sign up", destination: SignUpView())
-                .padding(.top)
+            if let errorMessage = errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+            }
+            
+            Button("Login"){
+                print("Login Clicked")
+                
+                guard Validators.isValidEmail(email) else {
+                    self.errorMessage = "Invalid Email"
+                    return
+                }
+                
+                guard Validators.isValidPassword(password) else {
+                    self.errorMessage = "Invalid Password"
+                    return
+                }
+                
+                
+                
+                auth.login(email: email, password: password) {
+                    result in
+                    switch result {
+                    case .success:
+                        self.errorMessage = nil
+                    case .failure(let failure):
+                        self.errorMessage = failure.localizedDescription
+                     }
+                }
+            }
+            .disabled(email.isEmpty || password.isEmpty)
         }
-        .padding()
     }
+}
+
+#Preview {
+    LoginView()
 }

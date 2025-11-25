@@ -7,9 +7,27 @@
 
 import SwiftUI
 
+// switch between login and register pages
+
 struct AuthGate: View {
+    
+    @State private var showLogin = true
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack{
+            Picker("", selection: $showLogin){
+                Text("Login").tag(true)
+                Text("Register").tag(false)
+            }.pickerStyle(.segmented)
+                .padding()
+            
+            
+            if showLogin {
+                LoginView()
+            }else {
+                RegisterView()
+            }
+        }
     }
 }
 
