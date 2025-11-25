@@ -48,13 +48,9 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background()
                 .tag(Tab.Notifications)
-            Text("Cart View")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background()
+            CartView()
                 .tag(Tab.Cart)
-            Text("Profile View")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background()
+              ProfileView()
                 .tag(Tab.Profile)
         }
         .overlay(
