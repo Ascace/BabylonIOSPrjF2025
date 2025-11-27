@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CartProductView: View {
-    @EnvironmentObject var cartManger: cartManager
+    @EnvironmentObject var cartManger: CartManager
     var product: Product
     var body: some View {
         HStack(spacing: 20){
