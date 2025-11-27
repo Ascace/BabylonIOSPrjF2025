@@ -37,7 +37,7 @@ struct CartProductView: View {
         .padding(.horizontal)
         .background(Color("kSecondary"))
         .cornerRadius(12)
-        .frame(width: .infinity,alignment: .leading)
+        .frame(maxWidth: .infinity,alignment: .leading)
         .padding()
     }
 }
