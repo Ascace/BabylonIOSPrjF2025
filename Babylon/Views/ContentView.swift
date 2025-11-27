@@ -32,11 +32,7 @@ struct ContentView: View {
          }else if auth.currentUser == nil {
              AuthGate()
          }else {
-             ProfileView()
-         }
-     }
-
-        TabView(selection: $currentTab) {
+              TabView(selection: $currentTab) {
             
             HomePageView()
                 .tag(Tab.Home)
@@ -67,6 +63,10 @@ struct ContentView: View {
             
         ).ignoresSafeArea(.all, edges: .bottom)
     }
+         }
+     }
+
+      
     
     func TabButton(tab: Tab) -> some View {
         GeometryReader{proxy in
