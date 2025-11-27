@@ -22,7 +22,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        /*         Group{
+                Group{
          if !isLoaded {
              ProgressView()
                  .onAppear {
@@ -35,7 +35,7 @@ struct ContentView: View {
              ProfileView()
          }
      }
-*/
+
         TabView(selection: $currentTab) {
             
             HomePageView()
