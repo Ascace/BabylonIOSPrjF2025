@@ -15,27 +15,29 @@ struct RegisterView: View {
     @State private var errorMessage: String?
     @StateObject private var auth = AuthService.shared
     
-    
     var body: some View {
         Form {
-            Section("Create Account"){
+            Section("Create Account") {
                 TextField("Enter Email", text: $email)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
                     .keyboardType(.emailAddress)
+                    .foregroundColor(.white)
                 
                 SecureField("Enter a Password (Min 6 Chars)", text: $password)
+                    .foregroundColor(.white)
                 
                 TextField("Enter Display Name", text: $displayName)
-               
+                    .foregroundColor(.white)
             }
+            .listRowBackground(Color(.secondarySystemBackground))
             
             if let errorMessage = errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
             }
             
-            Button("Sign Up"){
+            Button("Sign Up") {
                 print("Sign Up Clicked")
                 
                 guard Validators.isValidEmail(email) else {
@@ -53,21 +55,31 @@ struct RegisterView: View {
                     return
                 }
                 
-                auth.signUp(email: email, password: password, displayName: displayName) {
-                    result in
+                auth.signUp(email: email, password: password, displayName: displayName) { result in
                     switch result {
                     case .success:
                         self.errorMessage = nil
                     case .failure(let failure):
                         self.errorMessage = failure.localizedDescription
-                     }
+                    }
                 }
             }
             .disabled(email.isEmpty || password.isEmpty || displayName.isEmpty)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding()
+            .background(Color.green)
+            .foregroundColor(.white)
+            .cornerRadius(8)
+            .listRowBackground(Color(.secondarySystemBackground))
         }
+        .scrollContentBackground(.hidden)
+        .background(Color(.black))             
+        .preferredColorScheme(.dark)
     }
 }
 
 #Preview {
     RegisterView()
+        .preferredColorScheme(.dark)
 }
+

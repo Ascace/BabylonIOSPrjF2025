@@ -17,24 +17,24 @@ struct LoginView: View {
     
     var body: some View {
         Form {
-            Section("Login"){
+            Section("Login") {
                 TextField("Enter Email", text: $email)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
                     .keyboardType(.emailAddress)
+                    .foregroundColor(.white)
                 
                 SecureField("Enter a Password (Min 6 Chars)", text: $password)
-                
-                
-               
+                    .foregroundColor(.white)
             }
+            .listRowBackground(Color(.secondarySystemBackground))
             
             if let errorMessage = errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
             }
             
-            Button("Login"){
+            Button("Login") {
                 print("Login Clicked")
                 
                 guard Validators.isValidEmail(email) else {
@@ -47,23 +47,32 @@ struct LoginView: View {
                     return
                 }
                 
-                
-                
-                auth.login(email: email, password: password) {
-                    result in
+                auth.login(email: email, password: password) { result in
                     switch result {
                     case .success:
                         self.errorMessage = nil
                     case .failure(let failure):
                         self.errorMessage = failure.localizedDescription
-                     }
+                    }
                 }
             }
             .disabled(email.isEmpty || password.isEmpty)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding()
+            .background(Color.blue)      
+            .foregroundColor(.white)
+            .cornerRadius(8)
+            .listRowBackground(Color(.secondarySystemBackground))
         }
+       
+        .scrollContentBackground(.hidden)
+        .background(Color(.black))
+        .preferredColorScheme(.dark)
     }
 }
 
 #Preview {
     LoginView()
+        .preferredColorScheme(.dark)
 }
+
