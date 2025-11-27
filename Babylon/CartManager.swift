@@ -27,3 +27,4 @@ class CartManager: ObservableObject{
         total -= product.price 
     }
 }
+}
