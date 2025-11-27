@@ -13,7 +13,7 @@ struct SwearchView: View {
     var body: some View {
         HStack{
             HStack{
-            Image(systemName: "maginfyingglass")
+            Image(systemName: "magnifyingglass")
                 .padding(.leading)
             TextField("Search For furniture", text: $search )
                 .padding()
