@@ -20,7 +20,7 @@ struct ProfileView: View {
             Section("Profile"){
                 Text("Email: \(auth.currentUser?.email ?? "-")")
                 Text("Display Name: \(auth.currentUser?.displayName ?? "-")")
-                Text("Email: \(auth.currentUser?.isActive == true ? "Yes": "No")")
+                Text("Active: \(auth.currentUser?.isActive == true ? "Yes": "No")")
             }
             
             Section("Update Display Name") {
