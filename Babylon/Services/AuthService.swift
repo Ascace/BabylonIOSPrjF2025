@@ -65,7 +65,7 @@ class AuthService: ObservableObject {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if let error = error {
                 print(error.localizedDescription)
-                completion(.failure(error))
+               return completion(.failure(error))
             }else if let user = result?.user {
                 let uid = user.uid
                 
