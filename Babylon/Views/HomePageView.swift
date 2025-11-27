@@ -88,12 +88,12 @@ struct HomePageView_Previews: PreviewProvider{
                         }
                         
                     }
-                    Text("Find the most luxurios")
+                    Text("Find the most luxurious")
                         .font(.largeTitle.bold())
                     
                     + Text("Furniture")
                         .font(.largeTitle.bold())
-                    foregroundColor(Color("kPrimary"))
+                        .foregroundColor(Color("kPrimary"))
                     
                 }
             }
